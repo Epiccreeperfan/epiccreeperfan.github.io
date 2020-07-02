@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Fish Game! </title>
+<script src="https://simplycodingcourses.com/files/simplyjs/simply.js"></script>
+<script>
+function start(){
+sjs.open("target", 800, 500);
+var background = new sjs.Image ("Images/space6.png");
+background.setSize(sjs.getWidth(), sjs.getHeight());
+sjs.open("background",800,500);
+
+// Player Properties Below here
+var player = new sjs.Image("Images/flash_left.png")
+player.type = "player";
+player.setSize(70,35);
+player.friction = .0;
+player.accel = .1;
+
+
+	sjs.keyDown(RIGHT_KEY, function() {
+			player.setImage("Images/flash_right.png")
+			player.pushRight();
+
+		});
+
+	sjs.keyDown(LEFT_KEY, function() {
+		player.setImage("Images/flash_left.png")
+		player.pushLeft();
+
+	});
+
+	sjs.keyDown(DOWN_KEY, function() {
+		player.pushDown();
+	});
+
+	sjs.keyDown(UP_KEY, function() {
+		player.pushUp();
+
+
+
+	});
+	//powerup
+
+	setInterval(function(){
+		var x = Math.floor(Math.random() * 783);
+		var y = Math.floor(Math.random() * 470);
+		var powerUp = new sjs.Image("Images/Conite.png")
+		powerUp.type = "powerUp";
+		powerUp.setGravity();
+		powerUp.setSize(17, 30);
+		powerUp.noBounds = true;
+		powerUp.friction = .5;
+		powerUp.moveTo(x, y);
+	}, 5000);
+
+
+	sjs.onHit("powerUp","bottom_screen",function(x,y){
+		x.destroy();
+	});
+
+
+		sjs.onHit("player","powerUp",function(x,y){
+			x.grow(60,30); 
+			setTimeout(function(){
+				x.grow(-60, -30);
+		},4000);
+			y.destroy();
+});
+
+
+//Enemies
+setInterval(function(){
+	if(Math.random() > 0.5){
+		var enemy = new sjs.Image("Images/blue_right.png");
+		enemy.type = "enemy";
+		enemy.setSize(100,50);
+		enemy.noBounds = true;
+		enemy.friction = 0;
+		enemy.pushRight(0.5);
+		enemy.scaleSize(.5 + Math.random() * 1.2);
+		enemy.moveTo(-enemy.getWidth(), Math.random()*(enemy.getClamp().y));
+		} else {
+			var enemy2 = new sjs.Image("Images/green_left.png")
+			enemy2.type = "enemy";
+			enemy2.setSize(100,50)
+			enemy2.noBounds = true;
+			enemy2.friction = 0;
+			enemy2.pushLeft(0.5);
+			enemy2.scaleSize(.5 + Math.random() * 1.2);
+			enemy2.moveTo(sjs.getWidth(), Math.random()*(enemy2.getClamp().y));
+		}
+	},2000);
+
+sjs.left_screen.offset(-500);
+sjs.right_screen.offset(500);
+
+sjs.onHit("enemy",["right_screen","left_screen"], function(x,y){
+	x.destroy();
+});
+//score
+var score = 0;
+var score_txt = new sjs.Text("Score: 0", 21, "orange");
+
+sjs.onHit("player","enemy", function(x,y){
+	if(x.getWidth() > y.getWidth() && x.getHeight() > y.getHeight()) {
+		score = score + 1;
+		score_txt.setText("Score "+score);
+		localStorage.setItem("score",score)
+				x.grow(10,5)
+	} else {
+		x.destroy();
+	}
+		y.destroy();
+	});
+
+
+} //end start
+</script>
+</head>
+<body onload="start()">
+<h1> Space Game! </h1>
+<h2> Collect Conite for a Powerup!<h2>
+
+
+<div id="target" style="margin:auto;background:grey;"></div>
+</body>
+</html>
