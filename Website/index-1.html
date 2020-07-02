@@ -1,0 +1,106 @@
+
+<html>
+<head>
+	<title>Some Title</title>
+	<link type = "text/css" rel = "stylesheet" href = "Main.css" />
+			<script>
+			function banner(){
+		var text = confirm("Great Job you clicked a button!");
+			return text;
+}	
+				function answer(){
+
+					var radio = document.getElementsByName("trivia")
+					var selection = false; 
+					var message = "";
+
+					for( var i = 0; i < radio.length; i++) {
+						if(radio[i].value == "yes" && radio[i].checked == true) {
+						selection = true;
+							}
+						}
+							if(selection == true) {
+					message = message + "<b><p style='color:green'>Way to go!</p></b>";
+					} else {
+					message = message + "<b><p style='color:red'>Try again my friend.</p></b>";
+					}
+					document.getElementById("response").innerHTML = message;
+					
+				}
+
+				</script>
+	</head>
+	<body id="background">
+		
+<a onclick="return banner()" href="http://simplystem.com">
+
+	
+
+		<header id="banner"> Mars is the fourth planet from the Sun and the second-smallest planet in the Solar System, being only larger than Mercury. In English, Mars carries the name of the Roman god of war and is often referred to as the "Red Planet". </header>
+
+			<ul id="navmenu">
+				<li class="dog"> <a href="home.html">Home</a> </li>
+				<li class="navitem"> <a href="#">Games</a> </li>
+				<li class="navitem"> <a href="videos.html">Videos</a> </li>
+			</ul>
+
+			<div class="rightside">
+			<iframe width="560" height="315" src="https://www.youtube.com/embed/Re1lEVCur1o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
+			
+	
+			</div>
+			<div class = "leftside"><li class="listitem">Some Text</li>
+<li class="listitem">Some Text</li>
+<li class="listitem">Some Text</li></div>
+			<div class="clearfloat"></div>
+
+	<input type="button" value="Click Here" id="button">
+		<h2>Looking for Moose</h2>
+			<p>I Found One in the forrest.</p>
+			<div class="wrap-list">
+<ol>
+<li> Some list item text </li>
+<li> Some list item text </li>
+<li> Some list item text </li>
+</ol>
+</div>
+
+	<p class="paragraph">SOME Text is Here</p>
+	<h1>this is my H1 text</h1>
+
+	<h6>this is my h6 text</h6>
+
+	<div class="wrap-trivia">
+		this text <span class="wrap-text"> turns out different </span> from the rest.
+
+							<h2>Baseball Trivia Question:</h2>
+				<p> Who won the World Series in 1985</p>
+				</form>
+				<div id="response"> </div>
+				<input type= "radio" name="trivia" value="no"> 1st Possible Answer <br>
+				<input type="radio" name="trivia" value="no"> 2nd Possible Answer <br>
+				<input type="radio" name="trivia" value="no"> 3rd Possible Answer <br>
+				<input type="radio" name="trivia" value="yes"> 72th Possible Answer <br>
+				<input onclick="answer()" type="button" id="submit" value="Click Here">
+					
+
+				</form>
+				</div>
+
+		
+
+<img src="https://pm1.narvii.com/7114/40814daf6890d9ae7ddd797e6b503796a9a90558r1-640-480v2_uhq.jpg"/>
+
+	
+	<audio width="400" height="220" controls autoplay>
+<source src="http://www.w3schools.com/tags/horse.mp3" type="audio/mpeg">
+Your browser does not support HTML 5 audio.
+</audio>
+
+
+	<footer id="footer"> This text took me a whole minute to make. </footer>
+	</footer>
+	</body>
+	</html>
+
+
